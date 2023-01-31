@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Form from './form/Form';
+import ListTask from './listTask/ListTask';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  const onCreateTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form createTask={onCreateTask}/>
+      <ListTask tasks={tasks}/>
     </div>
   );
-}
+} 
 
 export default App;
